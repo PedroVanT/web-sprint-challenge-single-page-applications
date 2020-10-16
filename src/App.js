@@ -5,6 +5,14 @@ import PizzaCard from "./components/PizzaCard";
 import * as yup from "yup";
 import formSchema from "./components/formSchema";
 import Home from "./Home";
+import styled from "styled-components";
+
+const DivStyled = styled.div`
+  /* display: flex; */
+  .nav {
+    align-items: right;
+  }
+`;
 
 const formInitialValue = {
   name: "",
@@ -56,11 +64,6 @@ const App = () => {
           [name]: err.errors[0],
         });
       });
-
-    SetFormValue({
-      ...formValue,
-      [name]: value,
-    });
   };
   useEffect(() => {
     formSchema.isValid(formValue).then((valid) => {
@@ -69,9 +72,11 @@ const App = () => {
   }, [formValue]);
 
   return (
-    <div className="App">
-      <Link to="/">Home</Link>
-      <Link>Help</Link>
+    <DivStyled className="App">
+      <div className="nav">
+        <Link to="/">Home</Link>
+        <Link>Help</Link>
+      </div>
 
       <Route path="/">
         <Home />
@@ -91,7 +96,7 @@ const App = () => {
       {pizza.map((order) => (
         <PizzaCard confirmedOrders={order} key={order.name} />
       ))}
-    </div>
+    </DivStyled>
   );
 };
 export default App;

@@ -1,4 +1,5 @@
 import React from "react";
+// import styled from "styled-components";
 
 export default function PizzaCard(props) {
   const {
@@ -12,19 +13,18 @@ export default function PizzaCard(props) {
   } = props.confirmedOrders;
   return (
     <div>
-      <h1> Name:{name}</h1>
-      <div>Size:{size} </div>
-      <h2>Toppings:</h2>
-      <ul>
-        <li>Pepperoni:{pepperoni ? "yes" : "no"}</li>
-        <li>Hawaiian:{hawaiian ? "yes" : "no"}</li>
-        <li>BBQ Meatlovers:{bbq ? "yes" : "no"}</li>
-        <li>Chicken:{chicken ? "yes" : "no"}</li>
-      </ul>
-      <div>
-        Special Instructions:
-        {textarea === "" ? " None" : textarea}
-      </div>
+      <h1> Name: {name}</h1>
+      <div>Size: {size} </div>
+      <h2>
+        {pepperoni && hawaiian && bbq && chicken === "" ? "Toppings:" : ""}
+      </h2>
+
+      <ul>{pepperoni ? "pepperoni" : ""}</ul>
+      <ul>{hawaiian ? "hawaiian" : ""}</ul>
+      <ul>{bbq ? "bbq" : ""}</ul>
+      <ul>{chicken ? "chicken" : ""}</ul>
+
+      <div>{textarea === "" ? "" : `Special Instructions: ${textarea}`}</div>
     </div>
   );
 }
